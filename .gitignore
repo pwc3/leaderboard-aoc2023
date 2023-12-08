@@ -92,6 +92,6 @@ iOSInjectionProject/
 .DS_Store
 .cookie
 .json-url
-leaderboard.csv
+*.csv
 leaderboard.json
 
