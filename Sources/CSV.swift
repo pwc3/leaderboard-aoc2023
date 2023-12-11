@@ -56,7 +56,9 @@ struct CSV: AsyncParsableCommand {
         }.reduce(Set<String>(), { $0.union($1) })
 
         let initialColumns = ["id", "local_score", "name", "stars"]
-        let remainingColumns = Array(columns.subtracting(initialColumns)).sorted()
+        let remainingColumns = Array(columns.subtracting(initialColumns)).sorted {
+            $0.compare($1, options: .numeric) == .orderedAscending
+        }
 
         let jsonData = try JSONSerialization.data(withJSONObject: members)
         let dataFrame = try DataFrame(jsonData: jsonData, columns: initialColumns + remainingColumns)
